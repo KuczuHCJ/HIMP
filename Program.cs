@@ -10,9 +10,28 @@ namespace HIMP
 
         static void Main()
         {
-            inventory_management programManagment = new inventory_management();
+            InventoryManagement ProgramManagment = new InventoryManagement();
 
-            
+            ProgramManagment.AddInventoryElement();
+            ProgramManagment.AddInventoryElement();
+            ProgramManagment.AddInventoryElement();
+
+            ProgramManagment.ShowAllInventory();
+
+            ProgramManagment.DeleteInventoryElement();
+            ProgramManagment.ShowAllInventory();
+
+            ProgramManagment.AddInventoryElement();
+
+            ProgramManagment.ShowInventoryElement();
+            ProgramManagment.EditInventoryElement();
+            ProgramManagment.ShowInventoryElement();
+
+            ProgramManagment.ShowAllInventory();
+
+            ProgramManagment.CloseTheProgram();
+
+
         }
     }
 
