@@ -8,29 +8,76 @@ namespace HIMP
 {
     internal class InventoryManagement
     {
-        public List<Inventory> homeInventoryList = [];
 
-        public void AddInventoryElement()
+
+        public List<Inventory> homeInventoryList = new List<Inventory>();
+
+        public void AddInventoryElement()   
         {
-            Console.WriteLine("item name:");
-            string name = Console.ReadLine();
+            Console.Clear();
+            byte choice = 1;
+            do
+            {
+                Console.WriteLine("Adding a new element:");
 
-            Console.WriteLine("item location");
-            string location = Console.ReadLine();
+                Console.WriteLine("\nitem name:");
+                string name = Console.ReadLine();
 
-            Console.WriteLine("item description");
-            string description = Console.ReadLine();
+                Console.WriteLine("\nitem location:");
+                string location = Console.ReadLine();
 
-            Inventory newItemToList = new(name, description, location);
-            homeInventoryList.Add(newItemToList);
+                Console.WriteLine("\nitem description:");
+                string description = Console.ReadLine();
+
+                Console.Clear();
+                Console.WriteLine($"you add new element:\nname = {name} \nlocation = {location} \ndescription = {description}");
+                
+                Thread.Sleep(2000);
+                Console.Clear();
+
+                Inventory newItemToList = new(name, description, location);
+                homeInventoryList.Add(newItemToList);
+
+                while (true)
+                {
+                    Console.WriteLine("Do you want add next elemnt to list? \n1 - yes \n2 - no");
+                    if (byte.TryParse(Console.ReadLine(), out choice) && choice == 1 || choice == 2)
+                    {
+                        Console.Clear();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong number provided try again");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                        continue;
+                    }
+                }
+              Thread.Sleep(1000);
+
+            } while (choice == 1);
         }
 
-        public void ShowAllInventory()
+        public void ShowAllInventory() 
         {
-            foreach (var item in homeInventoryList)
+            Console.Clear();
+            if (homeInventoryList.Count > 0)
             {
-                Console.WriteLine($"ID:{item.ID} name: {item.Name}, description: {item.Description}, location: {item.Location}");
+                foreach (var item in homeInventoryList)
+                {
+                    Console.WriteLine(" |________________________________________________________________________________________|");
+                    Console.WriteLine($"|ID:{item.ID}|name: {item.Name}|description: {item.Description}|location: {item.Location}|");
+                    Console.WriteLine(" |________________________________________________________________________________________|");
+                }
             }
+            else
+            {
+                Console.WriteLine("Your list is empty\n");
+                Thread.Sleep(1000);
+            }
+            Console.WriteLine("Press any key to return to the main menu");
+            Console.ReadKey();
         }
 
         public void DeleteInventoryElement()
@@ -50,10 +97,13 @@ namespace HIMP
 
                         homeInventoryList.Remove(itemToDelete);
                         Console.WriteLine($"Inventory item with ID {id} deleted successfully.");
+
                         foreach (var item in homeInventoryList.Where(item => item.ID > id))
                         {
                             item.ID--;
+                            
                         }
+                        
 
                     }
                     else
@@ -98,7 +148,7 @@ namespace HIMP
 
         public void EditInventoryElement()
         {
-            int yesOrNo = 0;
+            byte yesOrNo = 0;
             do { 
             Console.WriteLine("Enter the ID of the inventory item you want to edit:");
                 if (int.TryParse(Console.ReadLine(), out int id))
@@ -112,7 +162,7 @@ namespace HIMP
                         Console.WriteLine($"What do you want to edit?");
                         Console.WriteLine("1 - Name, 2 - Description, 3-Location");
 
-                        if (int.TryParse(Console.ReadLine(), out int edit) && 1 <= edit || edit <= 3)
+                        if (byte.TryParse(Console.ReadLine(), out byte edit) && 1 <= edit || edit <= 3)
                         {
                             switch (edit)
                             {
@@ -146,7 +196,7 @@ namespace HIMP
                 {
                     Console.WriteLine("Do you want to edit another element?");
                     Console.WriteLine("1 - yes \n2 - no");
-                    if (int.TryParse(Console.ReadLine(), out yesOrNo) && yesOrNo == 1 || yesOrNo == 2)
+                    if (byte.TryParse(Console.ReadLine(), out yesOrNo) && yesOrNo == 1 || yesOrNo == 2)
                     {
                         Console.WriteLine($"Selected {yesOrNo}");
                         break;
@@ -169,7 +219,7 @@ namespace HIMP
             Thread.Sleep(5000);
         }
 
-
+       
 
     }
 }
