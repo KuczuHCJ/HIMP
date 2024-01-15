@@ -23,6 +23,7 @@ namespace HIMP
                 Console.WriteLine("Edit Inventory element - 5");
                 Console.WriteLine("Close the program - 6");
 
+                Console.WriteLine("\nCHOICE:");
                 if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <= 6)
                 {
                     switch (choice)

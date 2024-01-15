@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace HIMP
 {
-
+    //The class is used to construct elements added to the database by the user.
     internal class Inventory 
     {
-        private static int NextID = 1;
-        public void minus1NextId()
-        {
-            NextID--;
-        }
+        
 
-
+        protected internal static int NextID = 1;
+      
         public int ID { get; internal set; }
         public string Name { get; set; }
         public string Location { get; set; }
