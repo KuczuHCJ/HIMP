@@ -1,7 +1,8 @@
 ﻿using HIMP;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
-using System.Threading; // Dodaj ten using do korzystania z Thread.Sleep
+using System.Threading; 
 
 namespace HIMP
 {
@@ -9,7 +10,13 @@ namespace HIMP
     {
         static void Main()
         {
+            Console.WriteLine("Welcome to the Home Inventory Management Program!\nRemember to save your changes before exiting the program:\nusing option number 6 Otherwise, your progress will be lost.");
+            Console.WriteLine("~Kuczu");
+            Thread.Sleep(6000);
+
             InventoryManagement programManagement = new InventoryManagement();
+            
+
 
             while (true)
             {
@@ -21,10 +28,11 @@ namespace HIMP
                 Console.WriteLine("Show one inventory element - 3");
                 Console.WriteLine("Delete inventory element - 4");
                 Console.WriteLine("Edit Inventory element - 5");
-                Console.WriteLine("Close the program - 6");
+                Console.WriteLine("Sefe yor inventory in data base - 6");
+                Console.WriteLine("Close the program - 7");
 
                 Console.WriteLine("\nCHOICE:");
-                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <= 6)
+                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <= 7)
                 {
                     switch (choice)
                     {
@@ -44,8 +52,11 @@ namespace HIMP
                             programManagement.EditInventoryElement();
                             break;
                         case 6:
+                            programManagement.SefeInventoryToDataBase();
+                            break;
+                        case 7:
                             programManagement.CloseTheProgram();
-                            return;
+                            break;
                     }
                 }
                 else
@@ -55,6 +66,8 @@ namespace HIMP
                     Thread.Sleep(3000);
                     continue;
                 }
+
+                
             }
         }
     }

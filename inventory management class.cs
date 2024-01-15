@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HIMP
 {
-    internal sealed class InventoryManagement : MethodsForTheManagement 
+    internal sealed class InventoryManagement : MethodsForTheManagement
     {
         //Class created to manage the program's logic
 
@@ -55,7 +55,7 @@ namespace HIMP
                         continue;
                     }
                 } while (choice != 1);
-                
+
 
             } while (choice == 1);
         }
@@ -68,10 +68,10 @@ namespace HIMP
             {
                 foreach (var item in homeInventoryList)
                 {
-                    
+
                     Console.WriteLine($"  ID:{item.ID}|name: {item.Name}|description: {item.Description}|location: {item.Location}");
                     Console.WriteLine("\n");
-                    
+
                 }
                 PressKey();
             }
@@ -79,7 +79,7 @@ namespace HIMP
             {
                 EmptyList();
             }
-            
+
         }
 
         //Method for deleting elements.
@@ -243,6 +243,31 @@ namespace HIMP
 
         }
 
+        //Method Method for saving user-entered data during program operation to the database
+        internal void SefeInventoryToDataBase()
+        {
+            Console.Clear();
+            try
+            {
+                string location = "DataBase.txt";
+                File.WriteAllText(location, string.Empty);
+                SaveInventoryToFile();
+                Console.WriteLine("Data has been saved");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"The file could not be saved successfully, error = {ex.Message}");
+            }
+            PressKey();
+
+        }
+
+        //Method not used in the user interface. Initiated at the beginning of the program to read data from a TXT DataBase file.
+        internal void LoadInventoryFromDataBase()
+        {
+
+        }
+
         //Method ending the program execution.
         internal void CloseTheProgram()
         {
@@ -254,7 +279,7 @@ namespace HIMP
 
 
 
-        
+
     }
 }
 
