@@ -40,7 +40,7 @@ namespace HIMP
 
 
                 Console.WriteLine("\nCHOICE:");
-                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <=7 )
+                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <=8 )
                 {
                     switch (choice)
                     {
