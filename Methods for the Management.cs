@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
+using System.IO;
+
 
 
 // Class created to support the management class in handling the program menu through methods
 
 namespace HIMP
 {
-    abstract class MethodsForTheManagement
+    abstract class MethodsForTheManagementClass
     {
+
 
         List<Inventory> homeInventoryList = new List<Inventory>();
         //Method called when no ID has been assigned within the program ye
@@ -39,21 +43,18 @@ namespace HIMP
             Console.ReadKey();
             Console.Clear();
         }
-        
-        //Method to Save Inventory List to TXT format
-        internal void SaveInventoryToFile()
-        {
-            
-            List<string> linesToWrite = new List<string>();
 
-            foreach (var item in homeInventoryList)
-            {
-                string dataToWrite = $"{item.ID},{item.Name},{item.Location},{item.Description}";
-                linesToWrite.Add(dataToWrite);
-            }
 
-            File.WriteAllLines("DataBase.txt", linesToWrite);
-        }
 
     }
 }
+
+
+
+
+
+
+
+
+
+   

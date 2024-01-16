@@ -2,19 +2,25 @@
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
-using System.Threading; 
+using System.Threading;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace HIMP
 {
-    class Program
+    class Program 
     {
         static void Main()
         {
             Console.WriteLine("Welcome to the Home Inventory Management Program!\nRemember to save your changes before exiting the program:\nusing option number 6 Otherwise, your progress will be lost.");
             Console.WriteLine("~Kuczu");
-            Thread.Sleep(6000);
+            Thread.Sleep(4000);
 
             InventoryManagement programManagement = new InventoryManagement();
+
+
+
+            programManagement.LoadInventoryFromJsonDataBase();
             
 
 
@@ -26,13 +32,15 @@ namespace HIMP
                 Console.WriteLine("\nAdd new inventory element - 1");
                 Console.WriteLine("Show all inventory elements - 2");
                 Console.WriteLine("Show one inventory element - 3");
-                Console.WriteLine("Delete inventory element - 4");
-                Console.WriteLine("Edit Inventory element - 5");
-                Console.WriteLine("Sefe yor inventory in data base - 6");
-                Console.WriteLine("Close the program - 7");
+                Console.WriteLine("Delete all inventory element - 4");
+                Console.WriteLine("Delete inventory element - 5");
+                Console.WriteLine("Edit Inventory element - 6");
+                Console.WriteLine("Save work to data base - 7");
+                Console.WriteLine("Close the program - 8");
+
 
                 Console.WriteLine("\nCHOICE:");
-                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <= 7)
+                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <=7 )
                 {
                     switch (choice)
                     {
@@ -46,15 +54,18 @@ namespace HIMP
                             programManagement.ShowInventoryElement();
                             break;
                         case 4:
-                            programManagement.DeleteInventoryElement();
+                            programManagement.DeleteAllInventoryElements();
                             break;
                         case 5:
-                            programManagement.EditInventoryElement();
+                            programManagement.DeleteInventoryElement();
                             break;
                         case 6:
-                            programManagement.SefeInventoryToDataBase();
+                            programManagement.EditInventoryElement();
                             break;
                         case 7:
+                            programManagement.SaveInventoryToJson();
+                            break;
+                        case 8:
                             programManagement.CloseTheProgram();
                             break;
                     }
