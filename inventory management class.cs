@@ -11,7 +11,7 @@ namespace HIMP
     //Class created to manage the program's logic
     internal sealed class InventoryManagement : MethodsForTheManagementClass
     {
-        
+
 
         public List<Inventory> homeInventoryList = new List<Inventory>();
 
@@ -45,7 +45,7 @@ namespace HIMP
                     Inventory newItemToList = new(name, description, location);
                     homeInventoryList.Add(newItemToList);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Program error: {ex.Message}");
                 }
@@ -68,7 +68,7 @@ namespace HIMP
                         }
                     } while (choice != 1);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Program error: {ex.Message}");
                 }
@@ -142,18 +142,69 @@ namespace HIMP
                     EmptyList();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Program error: {ex.Message}");
             }
-            
 
+
+        }
+
+        //Method to show user data base sorted order by name or location 
+        internal void ShowOrderBy()
+        {
+            try
+            {
+                if (homeInventoryList.Count > 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Select and show your list order by:");
+                    Console.WriteLine("1 - name");
+                    Console.WriteLine("2 - location");
+                    if (byte.TryParse(Console.ReadLine(), out byte choice) && (choice == 1 || choice == 2))
+                    {
+                        switch (choice)
+                        {
+                            case 1:
+                                Console.Clear();
+                                Console.WriteLine("List sorted by name");
+                                var sortedListByName = homeInventoryList.OrderBy(item => item.Name).ToList();
+                                foreach (var item in sortedListByName)
+                                {
+                                    Console.WriteLine($"ID:{item.ID}|name: {item.Name}|description: {item.Description}|location: {item.Location}");
+                                    Console.WriteLine("\n");
+                                }
+                                PressKey();
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.WriteLine("List sorted by location");
+                                var sortedByLocation = homeInventoryList.OrderBy(item => item.Name).ToList();
+                                foreach (var item in sortedByLocation)
+                                {
+                                    Console.WriteLine($"ID:{item.ID}|name: {item.Name}|description: {item.Description}|location: {item.Location}");
+                                    Console.WriteLine("\n");
+                                }
+                                PressKey();
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    EmptyList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Program Error : {ex.Message}");
+            }
         }
 
         //Metthod for deteating all elements
         internal void DeleteAllInventoryElements()
         {
-            if(homeInventoryList.Count > 0)
+            if (homeInventoryList.Count > 0)
             {
                 try
                 {
@@ -161,7 +212,7 @@ namespace HIMP
                     Console.WriteLine("All items have been successfully deleted");
                     PressKey();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Program Error : {ex.Message} ");
                 }
@@ -366,17 +417,11 @@ namespace HIMP
                 Thread.Sleep(3000);
                 Environment.Exit(0);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Program Error : {ex.Message}");
             }
         }
-
-        
-
-
-
-
     }
 }
 

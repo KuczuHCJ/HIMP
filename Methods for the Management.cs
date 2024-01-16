@@ -18,7 +18,7 @@ namespace HIMP
 
 
         List<Inventory> homeInventoryList = new List<Inventory>();
-        //Method called when no ID has been assigned within the program ye
+        //Method called when no ID has been assigned within the program yet
         protected private void EmptyList()
         {
             Console.Clear();
@@ -43,6 +43,8 @@ namespace HIMP
             Console.ReadKey();
             Console.Clear();
         }
+
+        
 
 
 

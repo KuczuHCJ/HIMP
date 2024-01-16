@@ -30,13 +30,14 @@ namespace HIMP
                 Console.WriteLine("PROGRAM MENU");
                 Console.WriteLine("What do you want to do with the program?");
                 Console.WriteLine("\nAdd new inventory element - 1");
-                Console.WriteLine("Show all inventory elements - 2");
+                Console.WriteLine("Show all inventory elements order by element ID - 2");
                 Console.WriteLine("Show one inventory element - 3");
-                Console.WriteLine("Delete all inventory element - 4");
-                Console.WriteLine("Delete inventory element - 5");
-                Console.WriteLine("Edit Inventory element - 6");
-                Console.WriteLine("Save work to data base - 7");
-                Console.WriteLine("Close the program - 8");
+                Console.WriteLine("Show list order by name or location - 4");
+                Console.WriteLine("Delete all inventory element - 5");
+                Console.WriteLine("Delete inventory element - 6");
+                Console.WriteLine("Edit Inventory element - 7");
+                Console.WriteLine("Save work to data base - 8");
+                Console.WriteLine("Close the program - 9");
 
 
                 Console.WriteLine("\nCHOICE:");
@@ -54,18 +55,21 @@ namespace HIMP
                             programManagement.ShowInventoryElement();
                             break;
                         case 4:
-                            programManagement.DeleteAllInventoryElements();
+                            programManagement.ShowOrderBy();
                             break;
                         case 5:
-                            programManagement.DeleteInventoryElement();
+                            programManagement.DeleteAllInventoryElements();
                             break;
                         case 6:
-                            programManagement.EditInventoryElement();
+                            programManagement.DeleteInventoryElement();
                             break;
                         case 7:
-                            programManagement.SaveInventoryToJson();
+                            programManagement.EditInventoryElement();
                             break;
                         case 8:
+                            programManagement.SaveInventoryToJson();
+                            break;
+                        case 9:
                             programManagement.CloseTheProgram();
                             break;
                     }
