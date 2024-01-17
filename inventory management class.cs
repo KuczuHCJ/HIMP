@@ -9,11 +9,12 @@ using Newtonsoft.Json;
 namespace HIMP
 {
     //Class created to manage the program's logic
-    internal sealed class InventoryManagement : MethodsForTheManagementClass
+    internal sealed class InventoryManagement : MethodsForTheManagementClass 
     {
 
 
-        public List<Inventory> homeInventoryList = new List<Inventory>();
+        public List<Inventory> homeInventoryList = new();
+        
 
 
         //Method allowing the user to add an element to the list
@@ -38,7 +39,7 @@ namespace HIMP
                     string description = Console.ReadLine();
 
                     Console.Clear();
-                    Console.WriteLine($"you add new element:\nname = {name} \nlocation = {location} \ndescription = {description}");
+                    Console.WriteLine($"you add new element:\nID = {Inventory.NextID}\nname = {name} \nlocation = {location} \ndescription = {description}");
 
                     PressKey();
 
@@ -118,7 +119,7 @@ namespace HIMP
                     Console.WriteLine("Enter the ID of the inventory item you want to show:");
                     if (int.TryParse(Console.ReadLine(), out int id))
                     {
-                        if (id > 0 && id < homeInventoryList.Count)
+                        if (id > 0 && id <= homeInventoryList.Count)
                         {
                             Inventory itemToShow = homeInventoryList.Find(item => item.ID == id);
                             Console.WriteLine($"You selected the item with ID ={id}");
@@ -202,15 +203,46 @@ namespace HIMP
         }
 
         //Metthod for deteating all elements
-        internal void DeleteAllInventoryElements()
+        public void DeleteAllInventoryElements()
         {
             if (homeInventoryList.Count > 0)
             {
                 try
                 {
-                    homeInventoryList.Clear();
-                    Console.WriteLine("All items have been successfully deleted");
-                    PressKey();
+                    Console.Clear();
+                    Console.WriteLine("Are you sure you want to delete all files from the database?");
+                    Console.WriteLine("1 - yes");
+                    Console.WriteLine("2 - no, go back");
+                    
+                    if (byte.TryParse(Console.ReadLine(), out byte chosie))
+                    {
+                        Console.Clear();
+                        if (chosie == 1 || chosie == 2)
+                        {
+                            if (chosie == 1)
+                            {
+                                homeInventoryList.Clear();
+                                Console.WriteLine("All items have been successfully deleted");
+                                Inventory.NextID = 1;
+                                PressKey();
+                            }
+                            else
+                            {
+                                Console.WriteLine("The data was not deleted");
+                                PressKey();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid value provided");
+                            PressKey();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid value provided");
+                        PressKey();
+                    }
                 }
                 catch (Exception ex)
                 {

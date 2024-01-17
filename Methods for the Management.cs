@@ -15,11 +15,8 @@ namespace HIMP
 {
     abstract class MethodsForTheManagementClass
     {
-
-
-        List<Inventory> homeInventoryList = new List<Inventory>();
         //Method called when no ID has been assigned within the program yet
-        protected private void EmptyList()
+        protected static private void EmptyList()
         {
             Console.Clear();
             Console.WriteLine("your list is empty");
@@ -28,7 +25,7 @@ namespace HIMP
         }
 
         //Method called when the user-entered ID could not be found
-        protected private void IdNotExist()
+        protected static private void IdNotExist()
         {
             Console.Clear();
             Console.WriteLine("The provided ID does not exist.");
@@ -37,7 +34,7 @@ namespace HIMP
         }
 
         //Method used after displaying the values the user is looking for. They remain visible until the user finishes its operation by pressing a button.
-        protected private void PressKey()
+        protected private static void PressKey()
         {
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();

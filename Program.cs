@@ -16,12 +16,13 @@ namespace HIMP
             Console.WriteLine("~Kuczu");
             Thread.Sleep(4000);
 
-            InventoryManagement programManagement = new InventoryManagement();
 
+             MethodsManagmentForRegisterAndLogin userLogin = new MethodsManagmentForRegisterAndLogin(); 
+             InventoryManagement programManagement = new InventoryManagement();
 
+            userLogin.RegisterAndLogin();
 
             programManagement.LoadInventoryFromJsonDataBase();
-            
 
 
             while (true)
@@ -41,7 +42,7 @@ namespace HIMP
 
 
                 Console.WriteLine("\nCHOICE:");
-                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <=8 )
+                if (byte.TryParse(Console.ReadLine(), out byte choice) && choice >= 1 && choice <=9 )
                 {
                     switch (choice)
                     {
