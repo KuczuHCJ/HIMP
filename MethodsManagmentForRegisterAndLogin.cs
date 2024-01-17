@@ -132,7 +132,7 @@ namespace HIMP
             Console.WriteLine("Remember to save your login details, otherwise, you will lose all your progress.");
             Thread.Sleep(4000);
 
-            // Pętla sprawdzająca unikalność loginu
+            
             do
             {
                 Console.Clear();
